@@ -173,3 +173,11 @@ src/
 - Initial setup and basic functionality: 2 hours
 - Advanced features and edge cases: 4 hours  
 - Polish, testing, and documentation: 1 hour
+
+## Feedback on the Test Process
+
+This take-home test was well-designed in encouraging realistic product thinking, time management, and the integration of practical tools. I appreciated the clear focus on functionality over aesthetics and the flexibility in technology choices — it allowed me to work with tools I’m familiar with while also making strategic decisions under a time constraint.
+
+That said, to better align the test with real-world development expectations, I’d suggest one small improvement: provide a fixed dataset or API key (even read-only or rate-limited) for calorie/nutrition data. While sourcing and integrating an external nutrition API was a valuable challenge, it took a significant portion of the development time that might otherwise have gone toward optimizing usability or edge case handling.
+
+Including brief example input/output scenarios (e.g., “I had cereal” → should trigger clarification) might also help applicants align their design with your expectations more quickly.
