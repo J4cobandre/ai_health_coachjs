@@ -42,7 +42,11 @@ npm install openai
 
 3. Set environment variables
 Create a .env.local file:
+
+platform.openai.com
 NEXT_PUBLIC_OPENAI_API_KEY=your_openai_key
+
+https://developer.nutritionix.com/
 NEXT_PUBLIC_NUTRITIONIX_APP_ID=your_app_id
 NEXT_PUBLIC_NUTRITIONIX_APP_KEY=your_app_key
 
