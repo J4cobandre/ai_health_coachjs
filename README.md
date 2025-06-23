@@ -1,56 +1,175 @@
-# 🥗 AI Health Coach
+# AI Health Coach - Calorie Tracking App
 
-Track your meals and calories effortlessly through a conversational chat interface. Powered by OpenAI + Nutritionix, this app estimates and logs your daily food intake, automatically calculates calories, and keeps a daily food history — all with no login required.
+An AI-powered health coach that helps users track their daily calorie intake through natural language conversations. Built with React, OpenAI GPT-4, and Nutritionix API.
 
----
+## 🚀 Quick Start
 
-## 💡 Project Summary
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- OpenAI API key
+- Nutritionix API credentials
 
-This is a take-home challenge for the AI Developer position. The goal was to build a robust calorie-tracking app powered by an LLM that:
+### Installation & Setup
 
-- Accepts user meal input in free text via chat
-- Parses and understands vague or complex inputs
-- Estimates and logs calorie intake
-- Tracks and displays daily summaries and history
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/J4cobandre/ai_health_coachjs.git
+   cd ai_health_coachjs
+   ```
 
----
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-## 🧠 Tech Stack
+3. **Environment Configuration**
+   Create a `.env.local` file in the root directory:
+   ```env
+   OPENAI_API_KEY=your_openai_api_key_here
+   NUTRITIONIX_APP_ID=your_nutritionix_app_id_here
+   NUTRITIONIX_APP_KEY=your_nutritionix_app_key_here
+   ```
 
-| Area             | Stack                       |
-|------------------|-----------------------------|
-| Framework        | Next.js (with App Router)   |
-| UI Library       | React + Tailwind CSS         |
-| Language         | JavaScript (No TypeScript)  |
-| LLM              | OpenAI GPT-4o (via API)     |
-| Nutrition Data   | Nutritionix API             |
-| State Persistence| localStorage                |
+4. **Run the application**
+   ```bash
+   npm run dev
+   ```
 
----
+5. **Access the app**
+   Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## 🚀 Running the Project
+## 🔑 API Keys Setup
 
-1. Clone the repository
+### OpenAI API Key
+1. Visit [OpenAI Platform](https://platform.openai.com/api-keys)
+2. Create an account and generate an API key
+3. Add to `.env.local` as `OPENAI_API_KEY`
 
-```bash
-git clone https://github.com/YOUR_USERNAME/ai-health-coach.git
-cd ai-health-coach
+### Nutritionix API Credentials
+1. Visit [Nutritionix Developer](https://developer.nutritionix.com/)
+2. Sign up and create an application
+3. Get your App ID and App Key
+4. Add to `.env.local` as `NUTRITIONIX_APP_ID` and `NUTRITIONIX_APP_KEY`
 
-2. Install dependencies
-npm install
-npm install openai
+## 📱 Features
 
-3. Set environment variables
-Create a .env.local file:
+### Core Functionality
+- **Natural Language Food Input**: "I had 2 slices of pizza and a soda"
+- **Intelligent Calorie Estimation**: Combines GPT-4 analysis with Nutritionix database
+- **Smart Clarification System**: Asks for missing quantities with context preservation
+- **Real-time Calorie Tracking**: Running daily total displayed prominently
+- **Food History Management**: View and edit daily food entries
+- **Historical Navigation**: Browse previous days' food intake
+- **Offline Storage**: Uses localStorage for data persistence
 
-platform.openai.com
-NEXT_PUBLIC_OPENAI_API_KEY=your_openai_key
+### Advanced Features
+- **Quantity Management**: Inline +/- buttons to adjust food quantities
+- **Proper Food Quantification**: "5 chicken breasts" stored as 5 individual entries
+- **Intelligent Food Matching**: Handles synonyms and food variations
+- **Error Recovery**: Robust error handling with fallback responses
+- **Mobile Responsive**: Clean, modern UI that works on all devices
 
-https://developer.nutritionix.com/
-NEXT_PUBLIC_NUTRITIONIX_APP_ID=your_app_id
-NEXT_PUBLIC_NUTRITIONIX_APP_KEY=your_app_key
+## 🏗️ Architecture
 
-4. Run the app locally
-npm run dev
+### Frontend (React + Next.js)
+- **Components**: Modular, reusable React components
+- **State Management**: React hooks for local state
+- **Storage**: localStorage for data persistence
+- **API Integration**: Fetch API for backend communication
 
-Then open http://localhost:3000 in your browser.
+### Backend (Next.js API Routes)
+- **Meal Analysis API**: `/api/analyzeMeal` endpoint
+- **GPT-4 Integration**: OpenAI API for food clarification and validation
+- **Nutritionix Integration**: Real nutrition data lookup
+- **Error Handling**: Comprehensive error catching and fallbacks
+
+### Data Flow
+1. User inputs food description
+2. GPT-4 clarifies and validates food entries
+3. Missing quantities trigger clarification requests
+4. Nutritionix provides accurate calorie data
+5. Food entries stored as individual items in localStorage
+6. Real-time UI updates show current totals
+
+## 🛠️ Development Choices
+
+### Why This Tech Stack?
+- **React**: Preferred framework as specified in requirements
+- **Next.js**: Provides both frontend and API routes in one framework
+- **GPT-4**: Superior food understanding and clarification capabilities
+- **Nutritionix**: Comprehensive nutrition database with accurate data
+- **localStorage**: Simple persistence without database complexity
+
+### Key Implementation Decisions
+1. **Individual Entry Storage**: "5 apples" stored as 5 separate entries for granular management
+2. **Context Preservation**: Clarification system maintains all previously identified foods
+3. **Inline Editing**: Direct quantity adjustment without popup prompts
+4. **Fallback Handling**: Graceful degradation when APIs are unavailable
+5. **Comprehensive Logging**: Debug output for development and troubleshooting
+
+## 🧪 Testing
+
+### Manual Testing Scenarios
+1. **Basic Flow**: "I had breakfast - eggs and toast"
+2. **Clarification**: "Pizza and soda" → "How much pizza?" → "2 slices"
+3. **Quantity Management**: Add/remove items using +/- buttons
+4. **Edge Cases**: Invalid inputs, API failures, empty responses
+5. **Persistence**: Refresh browser, navigate dates
+
+### Debug Mode
+Enable debug logging by checking browser console for detailed flow information.
+
+## 📦 Project Structure
+
+```
+src/
+├── app/
+│   ├── api/
+│   │   └── analyzeMeal/
+│   │       └── route.js          # Meal analysis API endpoint
+│   │   ├── globals.css               # Global styles
+│   │   ├── layout.js                 # App layout component
+│   │   └── page.js                   # Main chat interface
+│   └── README.md                     # Project documentation
+└── public/                       # Static assets
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Push to GitHub
+2. Connect repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy automatically
+
+### Other Platforms
+- Netlify: Use `npm run build` and deploy `out/` folder
+- Docker: Basic Dockerfile included for containerization
+
+## 🎯 Requirements Fulfillment
+
+✅ **LLM Chat Interface**: Natural conversation with AI health coach  
+✅ **Calorie Tracking**: Accurate calorie counting with running daily total  
+✅ **Food History**: Dedicated panel showing daily food consumption  
+✅ **Historical Navigation**: Browse previous days' entries  
+✅ **No Login Required**: Immediate access without authentication  
+✅ **Modern UI**: Clean, responsive design with excellent UX  
+✅ **localStorage**: Data persistence across browser sessions  
+✅ **Mobile Friendly**: Responsive design for all devices  
+
+## 💡 Future Enhancements
+
+- User profiles and preferences
+- Nutrition macro tracking (protein, carbs, fat)
+- Meal planning and suggestions
+- Integration with fitness trackers
+- Photo-based food recognition
+- Social features and sharing
+
+## ⏱️ Development Time
+
+**Estimated Time**: ~7 hours total
+- Initial setup and basic functionality: 2 hours
+- Advanced features and edge cases: 4 hours  
+- Polish, testing, and documentation: 1 hour
